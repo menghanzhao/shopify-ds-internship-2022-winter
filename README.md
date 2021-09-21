@@ -49,4 +49,36 @@ Since it is against best practice to delete data, an alternative to disgarding o
 ![image](https://user-images.githubusercontent.com/19338756/133871124-fd2b6dd0-780b-4d01-b98d-f4151abc7b3a.png)
 
 ## question 2:
-See text file named question 2.
+### a. Answer is 54
+
+```
+SELECT count(ShipperID) 
+FROM Orders
+WHERE ShipperID == 1;
+```
+
+### b. Answer is Peacock
+
+```
+SELECT e.LastName
+FROM Employees as e
+WHERE
+(SELECT EmployeeID FROM
+(SELECT o.EmployeeID, COUNT(o.EmployeeID)
+FROM Orders AS o
+GROUP BY o.EmployeeID
+ORDER BY COUNT(o.EmployeeID) DESC
+LIMIT 1) a) == e.EmployeeID;
+```
+
+### c. Answer is Boston Crab Meat
+
+```
+Select p.ProductName
+		,sum(od.Quantity) as totalQuantity
+From Products as p, Orders as o, OrderDetails as od, Customers as c
+Where c.Country = 'Germany' and c.CustomerID = o.CustomerID and o.OrderID = od.OrderID and od.ProductID = p.ProductID
+Group by p.ProductName
+Order by totalQuantity desc
+Limit 1;
+```
