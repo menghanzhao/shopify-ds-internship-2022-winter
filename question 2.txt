@@ -14,7 +14,7 @@ WHERE
 FROM Orders AS o
 GROUP BY o.EmployeeID
 ORDER BY COUNT(o.EmployeeID) DESC
-LIMIT 1) a) == e.EmployeeID
+LIMIT 1) a) == e.EmployeeID;
 
 c. Answer is Boston Crab Meat
 
@@ -24,4 +24,4 @@ From Products as p, Orders as o, OrderDetails as od, Customers as c
 Where c.Country = 'Germany' and c.CustomerID = o.CustomerID and o.OrderID = od.OrderID and od.ProductID = p.ProductID
 Group by p.ProductName
 Order by totalQuantity desc
-Limit 1
+Limit 1;
